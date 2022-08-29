@@ -18,4 +18,11 @@ function devide(a, b) {
   return a / b
 }
 
-console.log(devide(5, 2))
+// operate
+function operate(op, a, b) {
+  if (op == '+') return add(a, b)
+  if (op == '-') return subtract(a, b)
+  if (op == '/') return devide(a, b)
+  if (op == '*') return multiply(a, b)
+}
+console.log(operate('/', 5, 3))
