@@ -31,6 +31,7 @@ const display = document.querySelector('.display')
 const btns = document.querySelectorAll('.num-btn')
 const operators = document.querySelectorAll('.operator')
 const equal = document.querySelector('.equal')
+const clear = document.querySelector('.clear')
 
 let value1
 let operator
@@ -73,6 +74,15 @@ function work() {
   equal.addEventListener('click', () => {
     let result = operate(value1, operator, value2)
     display.textContent = result
+    value1 = ''
+    flag = false
+    value2 = ''
+  })
+  clear.addEventListener('click', () => {
+    display.textContent = ''
+    value1 = ''
+    flag = false
+    value2 = ''
   })
 }
 work()
