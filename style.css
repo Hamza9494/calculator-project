@@ -5,33 +5,55 @@
 }
 
 .display {
-  height: 3rem;
-  width: 7.5rem;
-  margin: 5rem auto;
-  border: 1px solid black;
-  text-align: center;
-  padding: 0.9rem 0;
+  height: 100px;
+  width: 418px;
+  background: #7fbcd2;
+  margin: 0.25rem auto;
+  color: white;
+  font-size: 3rem;
+  text-align: right;
+  padding: 25px 0;
 }
 
-.num-buttons {
-  width: 400px;
-  height: 400px;
-  border: 1px solid red;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
 .buttons {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
-.fun-buttons {
-  width: 300px;
-  height: 300px;
-  border: 1px solid red;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 6rem 0;
+.num-buttons {
+  width: 320px;
 }
-.fun-buttons .btn {
-  height: 50px;
+.btn {
+  border: transparent solid 1px;
+  height: 75px;
+  width: 100px;
+  border-radius: 5%;
+  background: #dbe2ef;
+  font-size: 2rem;
+  display: inline-block;
+  margin: 0.25rem 0;
+  color: #903749;
+  transition: all 0.25s;
+}
+.operators {
+  display: flex;
+  flex-direction: column;
+}
+.special {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.btn.clear {
+  width: 200px;
+}
+.btn.delete {
+  width: 200px;
+}
+
+.btn:hover {
+  background: #f9f7f7;
 }

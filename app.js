@@ -1,88 +1,64 @@
-// add
-function add(a, b) {
-  return a + b
-}
-
-// subtract
-function subtract(a, b) {
-  return a - b
-}
-
-// multiply
-function multiply(a, b) {
-  return a * b
-}
-
-// devide
-function devide(a, b) {
-  return a / b
-}
-
-// operate
-function operate(a, op, b) {
-  if (op == '+') return add(a, b)
-  if (op == '-') return subtract(a, b)
-  if (op == '/') return devide(a, b)
-  if (op == '*') return multiply(a, b)
-}
-
-// populate calculator
 const display = document.querySelector('.display')
-const btns = document.querySelectorAll('.num-btn')
-const operators = document.querySelectorAll('.operator')
-const equal = document.querySelector('.equal')
 const clear = document.querySelector('.clear')
+const remove = document.querySelector('.delete')
+const nums = document.querySelectorAll('.num-btn')
+const operators = document.querySelectorAll('.operator')
+const point = document.querySelector('.point')
+const equal = document.querySelector('.equal')
+equal.addEventListener('click', operate)
 
-let value1
-let operator
-let flag = false
-let value2
+let prevNum = ''
+let curNum = ''
+let operator = ''
 
-function work() {
-  btns.forEach((num) => {
-    num.addEventListener('click', () => {
-      display.textContent = num.value
-      if (!flag) {
-        value1 = parseInt(num.value)
-        flag = true
-      }
-      if (flag) {
-        value2 = parseInt(num.value)
-      }
-    })
+//display numbers
+nums.forEach((num) => {
+  num.addEventListener('click', (e) => {
+    handleNumber(e.target.value)
   })
-  operators.forEach((op) => {
-    op.addEventListener('click', (e) => {
-      if (e.target.value === 'add') {
-        operator = '+'
-        flag = true
-      }
-      if (e.target.value === 'multiply') {
-        operator = '*'
-        flag = true
-      }
-      if (e.target.value === 'devide') {
-        operator = '/'
-        flag = true
-      }
-      if (e.target.value === 'subtract') {
-        operator = '-'
-        flag = true
-      }
-    })
+})
+// set operator
+operators.forEach((op) => {
+  op.addEventListener('click', (e) => {
+    operator = e.target.value
+    prevNum = curNum
+    display.textContent = operator
+    curNum = ''
+    display.textContent = curNum
   })
-  equal.addEventListener('click', () => {
-    let result = operate(value1, operator, value2)
-    display.textContent = result
-    value1 = ''
-    flag = false
-    value2 = ''
-  })
-  clear.addEventListener('click', () => {
-    display.textContent = ''
-    value1 = ''
-    flag = false
-    value2 = ''
-  })
+})
+function handleNumber(number) {
+  curNum += number
+  if (curNum.length > 9) return
+  display.textContent = curNum
 }
-work()
+
+//operate
+function operate() {
+  prevNum = Number(prevNum)
+  curNum = Number(curNum)
+  if (operator === '+') {
+    prevNum += curNum
+  }
+  if (operator === '-') {
+    prevNum -= curNum
+  }
+  if (operator === '/') {
+    if (curNum <= 0) {
+      prevNum = 'ERORR my dude'
+      display.textContent = prevNum
+    }
+    prevNum /= curNum
+  }
+  if (operator === '*') {
+    prevNum *= curNum
+  }
+  displayResult()
+}
+
+function displayResult() {
+  display.textContent = prevNum
+  prevNum = ''
+  curNum = ''
+  operator = ''
+}
